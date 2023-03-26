@@ -58,7 +58,7 @@ class Character extends FlxSprite
 					
 					
 					var offsets:Array<String>;
-			var data = File.getContent("mods/introMod/_append/data/gfPonyOffsets.txt");
+			var data = Assets.getText("mods/introMod/_append/data/gfPonyOffsets.txt");
 			
 			
 			offsets = CoolUtil.coolTextFile2(data);
@@ -274,7 +274,7 @@ class Character extends FlxSprite
 					
 					
 					var offsets:Array<String>;
-			var data = File.getContent("mods/introMod/_append/data/bfPonyOffsets.txt");
+			var data = Assets.getText("mods/introMod/_append/data/bfPonyOffsets.txt");
 			
 			
 			offsets = CoolUtil.coolTextFile2(data);
@@ -577,12 +577,12 @@ class Character extends FlxSprite
 					for (i in balls){
 						var boobs = i + "/shared/images/characters/" + curCharacter + "/spritemap.png";
 						trace(boobs);
-						if (FileSystem.exists(boobs)){
+						if (Assets.exists(boobs)){
 							path = boobs;
 							break;
 						}
 						boobs = "mods/" + i + "/shared/images/characters/" + curCharacter + "/spritemap.png";
-						if (FileSystem.exists(boobs)){
+						if (Assets.exists(boobs)){
 							path = boobs;
 							break;
 						}
@@ -599,12 +599,12 @@ class Character extends FlxSprite
 					for (i in balls){
 						var boobs = i + "/shared/images/characters/" + curCharacter + ".xml";
 						trace(boobs);
-						if (FileSystem.exists(boobs)){
+						if (Assets.exists(boobs)){
 							path = boobs;
 							break;
 						}
 						boobs = "mods/" + i + "/shared/images/characters/" + curCharacter + ".xml";
-						if (FileSystem.exists(boobs)){
+						if (Assets.exists(boobs)){
 							path = boobs;
 							break;
 						}
@@ -689,11 +689,11 @@ class Character extends FlxSprite
 			var balls = tits.split(",");
 			for (i in balls){
 				
-				if (FileSystem.exists(i + "/shared/images/characters/" + curCharacter + ".png")){
+				if (Assets.exists(i + "/shared/images/characters/" + curCharacter + ".png")){
 					path = i + "/shared/images/characters/" + curCharacter + ".png";
 					break;
 				}
-				if (FileSystem.exists("mods/"+ i + "/shared/images/characters/" + curCharacter + ".png")){
+				if (Assets.exists("mods/"+ i + "/shared/images/characters/" + curCharacter + ".png")){
 					path = "mods/" + i + "/shared/images/characters/" + curCharacter + ".png";
 					break;
 				}
@@ -701,7 +701,7 @@ class Character extends FlxSprite
 			trace(curCharacter + ":" + path);
 			
 			var gra:FlxGraphic;
-			var bmp = BitmapData.fromFile(path);
+			var bmp = Assets.getBitmapData(path);
 			gra = FlxGraphic.fromBitmapData(bmp, false, char);
 			gra.persist = true;
 			charsBitmaps.set(char, gra);
@@ -718,10 +718,10 @@ class Character extends FlxSprite
 		}else{
 			var data;
 			
-			if (FileSystem.exists(TitleState.curDir + "/shared/images/characters/" + curCharacter + "Offsets.txt")){
-				data = File.getContent(TitleState.curDir + "/shared/images/characters/"+curCharacter+"Offsets.txt");
+			if (Assets.exists(TitleState.curDir + "/shared/images/characters/" + curCharacter + "Offsets.txt")){
+				data = Assets.getText(TitleState.curDir + "/shared/images/characters/"+curCharacter+"Offsets.txt");
 			}else{
-				data = File.getContent("assets/shared/images/characters/"+curCharacter+"Offsets.txt");
+				data = Assets.getText("assets/shared/images/characters/"+curCharacter+"Offsets.txt");
 			}
 			
 			
@@ -745,10 +745,10 @@ class Character extends FlxSprite
 				var data;
 				
 				
-			if (FileSystem.exists(TitleState.curDir + "/shared/images/characters/" + curCharacter + "Anims.txt")){
-				data = File.getContent(TitleState.curDir + "/shared/images/characters/"+curCharacter+"Anims.txt");
+			if (Assets.exists(TitleState.curDir + "/shared/images/characters/" + curCharacter + "Anims.txt")){
+				data = Assets.getText(TitleState.curDir + "/shared/images/characters/"+curCharacter+"Anims.txt");
 			}else{
-				data = File.getContent("assets/shared/images/characters/"+curCharacter+"Anims.txt");
+				data = Assets.getText("assets/shared/images/characters/"+curCharacter+"Anims.txt");
 			}
 				anims = CoolUtil.coolTextFile2(data);
 				Cache.animData[curCharacter] = data;
