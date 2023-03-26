@@ -66,10 +66,10 @@ class Song
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
 		
-		if (!FileSystem.exists(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase()))){
+		if (!FileSystem.exists(Generic.returnPath() + Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase()))){
 			return null;
 		}
-		var rawJson = File.getContent(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+		var rawJson = Assets.getText('songs': + Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{
