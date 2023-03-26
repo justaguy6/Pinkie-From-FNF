@@ -69,7 +69,7 @@ class Song
 		if (!FileSystem.exists(Generic.returnPath() + Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase()))){
 			return null;
 		}
-		var rawJson = Assets.getText('songs': + Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+		var rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{
