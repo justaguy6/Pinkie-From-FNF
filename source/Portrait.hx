@@ -6,7 +6,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
-import sys.io.File;
+import openfl.utils.OpenFlAssets;
 
 using StringTools;
 
@@ -57,7 +57,7 @@ class Portrait extends FlxSprite
 				
 				var filepath = "assets/shared/images/portrait/" + _character + "_portrait.txt";
 				
-				var rawdata:String = File.getContent(filepath);
+				var rawdata:String = OpenFlAssets.getText(filepath);
 				var data = rawdata.split("\n");
 				for (i in data){
 					var thing = i.split(":");
