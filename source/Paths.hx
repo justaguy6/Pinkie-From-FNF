@@ -8,6 +8,7 @@ import openfl.display.BitmapData;
 import openfl.utils.AssetType;
 import openfl.media.Sound;
 import openfl.utils.Assets as OpenFlAssets;
+import lime.utils.Assets;
 import sys.FileSystem;
 import sys.io.File;
 
