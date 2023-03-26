@@ -53,6 +53,15 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		directories = [];
+
+	for (i in HSys.readDirectory("mods")){
+
+		if (!i.contains(".") && i != "introMod"){
+			directories.push(i);
+			trace(i);
+		}
+	}
 	
 		OptionUtils.bindSave();
 		OptionUtils.loadOptions(OptionUtils.options);
