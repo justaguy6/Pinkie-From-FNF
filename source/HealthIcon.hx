@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import openfl.display.BitmapData;
-import sys.FileSystem;
+import openfl.utils.Assets;
 
 class HealthIcon extends FlxSprite
 {
@@ -19,9 +19,9 @@ class HealthIcon extends FlxSprite
 		if (TitleState.curDir != "assets"){
 			trace(char, TitleState.curDir + '/images/icon-' + char + '.png');
 			
-			if(FileSystem.exists(TitleState.curDir+'/images/icon-'+char+'.png')){
+			if(FileSystem.exists(Generic.returnPath() + TitleState.curDir+'/images/icon-'+char+'.png')){
 			
-			loadGraphic(BitmapData.fromFile(TitleState.curDir+'/images/icon-'+char+'.png'), true, 150, 150);
+			loadGraphic(Assets.getBitmapData(TitleState.curDir+'/images/icon-'+char+'.png'), true, 150, 150);
 			animation.add(char, [0, 1], 0, false);
 			}else{
 				
