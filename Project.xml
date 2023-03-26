@@ -97,7 +97,7 @@
 	<haxelib name="flixel-ui" />
 	<haxelib name="newgrounds"/>
 	<haxelib name="faxe" if='switch'/>
-	
+	<haxelib name="extension-androidtools" if="android"/>
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="linc_luajit" if="android"/>
 	<haxelib name="hxvm-luajit" if="android"/>
