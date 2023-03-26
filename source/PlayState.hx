@@ -51,7 +51,6 @@ import Shaders;
 import haxe.Exception;
 import openfl.utils.Assets;
 import ModChart;
-#if windows
 
 import vm.lua.LuaVM;
 import vm.lua.Exception;
@@ -61,7 +60,7 @@ import llua.Convert;
 import llua.Lua;
 import llua.State;
 import llua.LuaL;
-#end
+
 import sys.io.File;
 import animateatlas.AtlasFrameMaker;
 using StringTools;
@@ -324,7 +323,7 @@ class PlayState extends MusicBeatState
 
 		//lua = new LuaVM();
 		#if windows
-			luaModchartExists = FileSystem.exists(Paths.modchart(SONG.song.toLowerCase()));
+			luaModchartExists = openfl.utils.Assets.exists('songs': + Paths.modchart(SONG.song.toLowerCase()));
 		#end
 		if (TitleState.curDir == 'assets'){
 			daInst = FlxG.sound.cache(Paths.inst(SONG.song.toLowerCase()));
@@ -335,7 +334,7 @@ class PlayState extends MusicBeatState
 			//daVoicesopenfl.media.Sound.fromFile(Paths.music('freakyMenu'));
 		}
 
-		if (FileSystem.exists(Paths.json(SONG.song.toLowerCase() + '/sliders'))){
+		if (FileSystem.exists(Generic.retutnPath() + Paths.json(SONG.song.toLowerCase() + '/sliders'))){
 			SONG.sliderVelocities = Song.loadFromJson('sliders', SONG.song.toLowerCase()).sliderVelocities;
 		}
 		grade = ScoreUtils.gradeArray[0] + " (FC)";
@@ -416,7 +415,7 @@ class PlayState extends MusicBeatState
 					
 					
 					
-					hasEndDialogue = FileSystem.exists(Paths.txt(SONG.song.toLowerCase() + "/dialogueEnd" + (isPony?"-pony":"")));
+					hasEndDialogue = FileSystem.exists(Generic.returnPath() + Paths.txt(SONG.song.toLowerCase() + "/dialogueEnd" + (isPony?"-pony":"")));
 					if (currentOptions.lessBS) hasEndDialogue = false;
 					trace(Paths.txt(SONG.song.toLowerCase() + "/dialogueEnd" + (isPony?"-pony":"")));
 				} catch(e){
@@ -1349,7 +1348,7 @@ class PlayState extends MusicBeatState
 				i.Register(lua.state);
 
 			try {
-				lua.runFile(Paths.modchart(SONG.song.toLowerCase()));
+				lua.runFile(openfl.utils.Assets.grtText('songs': + Paths.modchart(SONG.song.toLowerCase())));
 			}catch (e:Exception){
 				trace("ERROR: " + e);
 			};
@@ -2123,7 +2122,7 @@ class PlayState extends MusicBeatState
 			var stopLookin = false;
 			for (i in balls){
 				if(!stopLookin){
-					if (FileSystem.exists(i + "/shared/images/"+SONG.strumskin+".xml")){
+					if (FileSystem.exists(Generic.returnPath() + i + "/shared/images/"+SONG.strumskin+".xml")){
 						path = i + "/shared/images/"+SONG.strumskin+".xml";
 						stopLookin = true;
 						break;
@@ -2491,13 +2490,13 @@ class PlayState extends MusicBeatState
 		{
 
 
-			#if windows
+			
 			if(lua!=null){
 				lua.destroy();
 				trace("cringe");
 				lua=null;
 			}
-			#end
+			
 			FlxG.switchState(new ChartingState());
 			Cache.Clear();
 
@@ -2547,23 +2546,23 @@ class PlayState extends MusicBeatState
 				AnimationDebug.isDad = true;
 				FlxG.switchState(new AnimationDebug(SONG.player2));
 				Cache.Clear();
-				#if windows
+				
 				if(lua!=null){
 					lua.destroy();
 					lua=null;
 				}
-				#end
+				
 			}
 			if (FlxG.keys.justPressed.NINE){
 				AnimationDebug.isDad = false;
 				FlxG.switchState(new AnimationDebug(SONG.player1,false));
 				Cache.Clear();
-				#if windows
+				
 				if(lua!=null){
 					lua.destroy();
 					lua=null;
 				}
-				#end
+				
 			}
 		if (startingSong)
 		{
@@ -3195,12 +3194,12 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 		FlxG.sound.music.stop();
-		#if windows
+		
 		if(lua!=null){
 			lua.destroy();
 			lua=null;
 		}
-		#end
+		
 		if (SONG.validScore)
 		{
 			#if !switch
