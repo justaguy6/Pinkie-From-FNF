@@ -3,7 +3,7 @@ package;
 import flixel.*;
 import lime.utils.Assets;
 import openfl.display.BlendMode;
-import sys.io.File;
+import openfl.utils.Assets;
 
 using StringTools;
 
@@ -90,7 +90,7 @@ class CoolUtil
 	
 	public static function coolTextFile3(path:String):Array<String>
 	{
-		var daList:Array<String> = File.getContent(path).trim().split('\n');
+		var daList:Array<String> = Assets.getText(path).trim().split('\n');
 
 		for (i in 0...daList.length)
 		{
