@@ -474,17 +474,8 @@ class LuaSprite extends LuaClass {
     var sprite = PlayState.currentPState.luaSprites[spriteName];
     var fullPath = TitleState.curDir+"/data/" + PlayState.SONG.song.toLowerCase()+"/"+path+".png";
     var data:BitmapData;
-    if(FileSystem.exists(fullPath) && !FileSystem.isDirectory(fullPath)){
-      try{
-        data = BitmapData.fromFile(fullPath);
-      }catch(e:Any){
-        LuaL.error(state,"FATAL ERROR: " + e);
-        return 0;
-      }
-    }else{
-      LuaL.error(state,path + " is not a valid image file!");
-      return 0;
-    }
+    
+    data = Assets.getBitmapData(fullPath);
     sprite.loadGraphic(data,animated,0,0,false,spriteName);
     return 0;
   }
@@ -500,18 +491,8 @@ class LuaSprite extends LuaClass {
     var fullPathPNG = fullPath + ".png";
     var bitmapData:BitmapData;
     var content:String;
-    if(FileSystem.exists(fullPathPNG) && !FileSystem.isDirectory(fullPathPNG) && FileSystem.exists(fullPathXML) && !FileSystem.isDirectory(fullPathXML) ){
-      try{
-        bitmapData = BitmapData.fromFile(fullPathPNG);
-        content = File.getContent(fullPathXML);
-      }catch(e:Any){
-        LuaL.error(state,"FATAL ERROR: " + e);
-        return 0;
-      }
-    }else{
-      LuaL.error(state,path + " is not a valid spritesheet!");
-      return 0;
-    }
+    bitmapData = Assets.getBitmapData(fullPathPNG);
+    content = Assets.getText(fullPathXML);
     var frames = FlxAtlasFrames.fromSparrow(bitmapData,content);
     sprite.setFrames(frames);
     return 0;
