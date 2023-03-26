@@ -100,7 +100,7 @@ class Startup extends MusicBeatState
 
     function preloadMusic():Void{
         var music = [];
-        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
+        for (i in HSys.readDirectory("assets/songs"))
             {
                 music.push(i);
             }
